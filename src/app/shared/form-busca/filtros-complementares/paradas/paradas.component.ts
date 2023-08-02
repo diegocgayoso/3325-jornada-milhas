@@ -59,4 +59,15 @@ export class ParadasComponent implements OnInit{
       conexoes: Number(opcao.value)
     })
   }
+
+  paradaSelecionada(opcao: OpcoesDeParada): boolean{
+    return this.opcoesSelecionada === opcao
+  }
+
+  incluirParada(opcao: OpcoesDeParada){
+    if(!this.opcoesSelecionada){
+      return false
+    }
+    return this.opcoesSelecionada.value > opcao.value
+  }
 }

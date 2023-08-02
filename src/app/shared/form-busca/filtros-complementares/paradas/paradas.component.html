@@ -6,6 +6,9 @@
         color="primary"
         [value]="opcao.value"
         (change)="alternarParada(opcao, $event.checked)"
+        [checked]="paradaSelecionada(opcao)"
+        [disabled]="incluirParada(opcao)"
+        [indeterminate]="incluirParada(opcao)"
         >
         {{ opcao.display }}
       </mat-checkbox>
