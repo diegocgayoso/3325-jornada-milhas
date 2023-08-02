@@ -26,6 +26,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ModalComponent } from './shared/modal/modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSliderModule } from '@angular/material/slider';
 
 import { BotaoControleComponent } from './shared/botao-controle/botao-controle.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -100,7 +101,8 @@ import { FiltrosComplementaresComponent } from './shared/form-busca/filtros-comp
     MatAutocompleteModule,
     MatRadioModule,
     MatDividerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSliderModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
