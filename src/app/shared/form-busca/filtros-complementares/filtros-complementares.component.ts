@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormBuscaService } from 'src/app/core/services/form-busca.service';
 
 @Component({
   selector: 'app-filtros-complementares',
@@ -6,5 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./filtros-complementares.component.scss']
 })
 export class FiltrosComplementaresComponent {
+  @Output() realizarBusca = new EventEmitter();
+  constructor(private formBuscaService: FormBuscaService){}
 
+  busca(){
+    if(!this.formBuscaService.formEstaValido){
+      this.formBuscaService.formBusca.markAllAsTouched()
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior:'smooth'
+      })
+      return
+    }
+    this.realizarBusca.emit(this.formBuscaService.obterDadosBusca())
+  }
 }

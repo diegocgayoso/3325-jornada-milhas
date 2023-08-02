@@ -4,7 +4,7 @@
     <app-form-busca (realizarBusca)="busca($event)"></app-form-busca>
     <section class="conteudo">
       <aside class="filtros-adicionais">
-        <app-filtros-complementares></app-filtros-complementares>
+        <app-filtros-complementares (realizarBusca)="busca($event)"></app-filtros-complementares>
       </aside>
       <div class="passagens">
         <app-passagem *ngFor="let passagem of passagens" [passagem]="passagem"></app-passagem>
