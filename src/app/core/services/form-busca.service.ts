@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatChipSelectionChange } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
@@ -12,15 +12,29 @@ export class FormBuscaService {
   formBusca: FormGroup;
 
   constructor(private dialog: MatDialog) { 
+    const somenteIda = new FormControl(false, [Validators.required])
+    const dataVolta = new FormControl(null, [Validators.required])
 
     this.formBusca = new FormGroup({
-      somenteIda: new FormControl(false),
-      origem: new FormControl(null),
-      destino: new FormControl(null),
+      somenteIda,
+      origem: new FormControl(null, [Validators.required]),
+      destino: new FormControl(null, [Validators.required]),
       tipo: new FormControl("Executiva"),
       adultos: new FormControl(3),
       criancas: new FormControl(0),
-      bebes: new FormControl(1)
+      bebes: new FormControl(1),
+      dataIda: new FormControl(null, [Validators.required]),
+      dataVolta
+    })
+    somenteIda.valueChanges.subscribe(somenteIda => {
+      if(somenteIda){
+        dataVolta.disable();
+        dataVolta.setValidators(null)
+      }else{
+        dataVolta.enable();
+        dataVolta.setValidators([Validators.required])
+      }
+      dataVolta.updateValueAndValidity
     })
   }
 
@@ -76,5 +90,9 @@ export class FormBuscaService {
     this.dialog.open(ModalComponent, {
       width: '50%'
     })
+  }
+
+  get formEstaValido(){
+    return this.formBusca.valid
   }
 }
