@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatChipSelectionChange } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
+import { DadosBusca, UnidadeFederativa } from '../types/type';
 
 @Injectable({
   providedIn: 'root'
@@ -69,12 +70,33 @@ export class FormBuscaService {
     });
   }
 
-  obterControle(nome:string): FormControl {
+  obterControle<T>(nome:string): FormControl {
     const control = this.formBusca.get(nome);
     if (!control) {
       throw new Error(`FormControl com nome "${nome}" não existe.`);
     }
-    return control as FormControl;
+    return control as FormControl<T>;
+  }
+
+  obterDadosBusca(): DadosBusca {
+    const dataIdaControl = this.obterControle<Date>('dataIda');
+    const dadosBusca: DadosBusca = {
+      pagina: 1,
+      porPagina: 50,
+      dataIda: dataIdaControl.value.toISOString(),
+      passageirosAdultos: this.obterControle<number>('adultos').value,
+      passageirosCriancas: this.obterControle<number>('criancas').value,
+      passageirosBebes: this.obterControle<number>('bebes').value,
+      somenteIda: this.obterControle<boolean>('somenteIda').value,
+      origemId: this.obterControle<UnidadeFederativa>('origem').value.id,
+      destinoId: this.obterControle<UnidadeFederativa>('destino').value.id,
+      tipo: this.obterControle<string>('tipo').value,
+    }
+    const dataVoltaControl = this.obterControle<Date>('dataVolta');
+    if (dataVoltaControl.value) {
+      dadosBusca.dataVolta = dataVoltaControl.value.toISOString();
+    }
+    return dadosBusca
   }
 
   alterarTipo (evento: MatChipSelectionChange, tipo: string) {
