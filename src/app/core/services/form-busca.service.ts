@@ -28,6 +28,8 @@ export class FormBuscaService {
       dataVolta,
       conexoes: new FormControl(null),
       companhias: new FormControl(null),
+      precoMin: new FormControl(null),
+      precoMax: new FormControl(null),
     })
     somenteIda.valueChanges.subscribe(somenteIda => {
       if(somenteIda){
@@ -106,7 +108,14 @@ export class FormBuscaService {
     if(companhiasControl.value){
       dadosBusca.companhiasId = companhiasControl.value
     }
-
+    const precoMinControl = this.obterControle<number>('precoMin')
+    if(precoMinControl.value){
+      dadosBusca.precoMin = precoMinControl.value
+    }
+    const precoMaxControl = this.obterControle<number>('precoMin')
+    if(precoMaxControl.value){
+      dadosBusca.precoMax = precoMaxControl.value
+    }
     return dadosBusca
   }
 
