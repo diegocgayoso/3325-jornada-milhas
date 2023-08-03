@@ -17,15 +17,7 @@ export class PassagensService {
   ) { }
   getPassagens(search: DadosBusca) : Observable<Resultado>{
     const params = this.converterParametroParaString(search);
-
-    const obser = this.httpClient.get<Resultado>(this.apiUrl + '/passagem/search?' + params);
-    obser.pipe(take(1)).subscribe(
-      res => {
-        this.precoMin = res.precoMin
-        this.precoMax = res.precoMax
-      }
-    )
-    return obser
+    return this.httpClient.get<Resultado>(this.apiUrl + '/passagem/search?' + params);
   }
 
   converterParametroParaString(busca: DadosBusca){
