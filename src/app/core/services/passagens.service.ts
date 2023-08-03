@@ -10,8 +10,6 @@ import { DadosBusca, Resultado } from '../types/type';
 export class PassagensService {
   apiUrl : string = environment.apiUrl;
 
-  precoMin: number = 0;
-  precoMax: number = 0;
   constructor(
     private httpClient: HttpClient
   ) { }
