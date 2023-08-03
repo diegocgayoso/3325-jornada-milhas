@@ -1,4 +1,4 @@
-<form  class="filtros-complementares" >
+<form [formGroup]="formBuscaService.formBusca" class="filtros-complementares" (ngSubmit)="busca()" >
   <app-card>
       <div class="cabecalho">
           <h4>Filtro</h4>

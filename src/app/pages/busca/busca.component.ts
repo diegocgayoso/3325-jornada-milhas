@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { take } from 'rxjs';
 import { FormBuscaService } from 'src/app/core/services/form-busca.service';
 import { PassagensService } from 'src/app/core/services/passagens.service';
 import { DadosBusca, Passagem, Resultado } from 'src/app/core/types/type';
@@ -15,8 +16,8 @@ export class BuscaComponent implements OnInit {
     private formBuscaService: FormBuscaService
   ) { }
   ngOnInit(): void {
-    const buscaPadrao = {
-      data: new Date().toISOString,
+    const buscaPadrao : DadosBusca = {
+      dataIda: new Date().toISOString(),
       pagina: 1,
       porPagina: 25,
       somenteIda: false,
