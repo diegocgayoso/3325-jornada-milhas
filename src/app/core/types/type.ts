@@ -19,15 +19,15 @@ export interface Depoimento {
 }
 
 export interface PessoaUsuaria {
-  nome: string;
-  nascimento: string;
-  cpf: string;
-  telefone: string;
-  email: string;
-  senha: string;
-  cidade: string;
-  estado: UnidadeFederativa;
-  genero: string;
+    nome: string;
+    nascimento: string;
+    cpf: string;
+    telefone: string;
+    email: string;
+    senha: string;
+    cidade: string;
+    estado: UnidadeFederativa;
+    genero: string;
 }
 
 export interface Resultado {
@@ -39,7 +39,7 @@ export interface Resultado {
     resultado: Passagem[];
 }
 
-export interface Passagem{
+export interface Passagem {
     tipo: string;
     precoIda: number;
     precoVolta: number;
@@ -55,19 +55,19 @@ export interface Passagem{
     orcamento: Orcamento[];
 }
 
-export interface Companhia{
+export interface Companhia {
     id: string;
     nome: string;
 }
 
-export interface Orcamento{
+export interface Orcamento {
     descricao: string;
     preco: number;
     taxaEmbarque: number;
     total: number
 }
 
-export interface DadosBusca{
+export interface DadosBusca {
     somenteIda?: boolean;
     passageirosAdultos?: number;
     passageirosCriancas?: number;
@@ -84,4 +84,10 @@ export interface DadosBusca{
     companhiasId?: number[];
     pagina: number;
     porPagina: number;
+}
+
+export interface Destaques {
+    maisRapida: Passagem;
+    maisBarata: Passagem;
+    sugerida: Passagem;
 }
